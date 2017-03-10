@@ -4,17 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{071CBFC8-F3BB-41D5-ACC2-62B56A46F5C4}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{071C9C53-D0FC-40E6-9CA2-E4B74EF3D20D}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GitVersionTest.ConApp</RootNamespace>
-    <AssemblyName>GitVersionTest.ConApp</AssemblyName>
+    <RootNamespace>GitVersionTest.Integration</RootNamespace>
+    <AssemblyName>GitVersionTest.Integration</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -43,16 +40,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="Interactor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GitVersionTest.Integration\GitVersionTest.Integration.csproj">
-      <Project>{071c9c53-d0fc-40e6-9ca2-e4b74ef3d20d}</Project>
-      <Name>GitVersionTest.Integration</Name>
+    <ProjectReference Include="..\GitVersionTest.Logic\GitVersionTest.Logic.csproj">
+      <Project>{136db79d-9bdc-4c47-8937-36218af5e53f}</Project>
+      <Name>GitVersionTest.Logic</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
