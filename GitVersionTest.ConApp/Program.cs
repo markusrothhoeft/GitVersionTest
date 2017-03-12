@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -48,6 +49,16 @@ namespace GitVersionTest.ConApp
                     Console.WriteLine("Assembly informational version is {0}.",
                         ((AssemblyInformationalVersionAttribute) attr).InformationalVersion);
             }
+
+            var assemblyName = assy.GetName().Name;
+            var gitVersionInformationType = assy.GetType(assemblyName + ".GitVersionInformation");
+            var fields = gitVersionInformationType.GetFields();
+
+            foreach (var field in fields)
+            {
+                Console.WriteLine(string.Format("{0}: {1}", field.Name, field.GetValue(null)));
+            }
+
             Console.WriteLine("Press any key to continue... ");
             Console.ReadLine();
         }
