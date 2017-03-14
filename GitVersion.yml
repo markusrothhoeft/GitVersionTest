@@ -1,1 +1,8 @@
-next-version: 4.0
+next-version: 4.0.0-rc1
+
+assembly-versioning-scheme: MajorMinorPatchTag
+mode: ContinuousDeployment
+commit-message-incrementing: Disabled
+branches: {}
+ignore:
+  sha: []

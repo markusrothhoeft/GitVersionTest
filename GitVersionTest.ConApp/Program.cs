@@ -23,6 +23,11 @@ namespace GitVersionTest.ConApp
 
             Assembly assy = typeof(Program).Assembly;
 
+            AssemblyName thisAssemName = assy.GetName();
+            Version ver = thisAssemName.Version;
+
+            Console.WriteLine("This is version {0} of {1}.\n", ver, thisAssemName.Name);
+
             // Iterate through the attributes for the assembly.
             foreach (Attribute attr in Attribute.GetCustomAttributes(assy))
             {
@@ -30,33 +35,35 @@ namespace GitVersionTest.ConApp
 
                 // Check for the AssemblyTitle attribute.
                 if (type == typeof(AssemblyTitleAttribute))
-                    Console.WriteLine("Assembly title is \"{0}\".", ((AssemblyTitleAttribute) attr).Title);
-
-                // Check for the AssemblyDescription attribute.
+                    Console.WriteLine("Title is                : \"{0}\"", ((AssemblyTitleAttribute) attr).Title);
                 else if (type == typeof(AssemblyDescriptionAttribute))
-                    Console.WriteLine("Assembly description is \"{0}\".",
+                    Console.WriteLine("Description is          : \"{0}\"",
                         ((AssemblyDescriptionAttribute) attr).Description);
-
-                // Check for the AssemblyCompany attribute.
                 else if (type == typeof(AssemblyCompanyAttribute))
-                    Console.WriteLine("Assembly company is {0}.", ((AssemblyCompanyAttribute) attr).Company);
-
-                else if (type == typeof(AssemblyVersionAttribute))
-                    Console.WriteLine("Assembly version is {0}.", ((AssemblyVersionAttribute) attr).Version);
+                    Console.WriteLine("Company is              : {0}", ((AssemblyCompanyAttribute) attr).Company);
                 else if (type == typeof(AssemblyFileVersionAttribute))
-                    Console.WriteLine("Assembly file version is {0}.", ((AssemblyFileVersionAttribute) attr).Version);
+                    Console.WriteLine("File version is         : {0}", ((AssemblyFileVersionAttribute) attr).Version);
                 else if (type == typeof(AssemblyInformationalVersionAttribute))
-                    Console.WriteLine("Assembly informational version is {0}.",
+                    Console.WriteLine("Informational version is: {0}",
                         ((AssemblyInformationalVersionAttribute) attr).InformationalVersion);
             }
 
-            var assemblyName = assy.GetName().Name;
-            var gitVersionInformationType = assy.GetType(assemblyName + ".GitVersionInformation");
-            var fields = gitVersionInformationType.GetFields();
-
-            foreach (var field in fields)
+            Console.WriteLine("");
+            Console.WriteLine("*** GitVersionInformations ***");
+            try
             {
-                Console.WriteLine(string.Format("{0}: {1}", field.Name, field.GetValue(null)));
+                var assemblyName = assy.GetName().Name;
+                var gitVersionInformationType = assy.GetType(assemblyName + ".GitVersionInformation");
+                var fields = gitVersionInformationType.GetFields();
+                foreach (var field in fields)
+                {
+                    Console.WriteLine(string.Format("{0}: {1}", field.Name, field.GetValue(null)));
+                }
+
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("FEHLER: GitVersionInformations können nicht gelesen werden.");
             }
 
             Console.WriteLine("Press any key to continue... ");
@@ -64,3 +71,5 @@ namespace GitVersionTest.ConApp
         }
     }
 }
+
+
