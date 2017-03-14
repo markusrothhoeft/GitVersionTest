@@ -9,9 +9,15 @@ namespace GitVersionTest.Integration
 {
     public class Interactor
     {
+        private Calculator calc;
         public Interactor()
         {
-            var AssInfoHandler = new GitVersionTest.Logic.Calculator();
+            calc = new Calculator();
+        }
+
+        public int Add(int x, int y)
+        {
+            return calc.Add(x, y);
         }
     }
 }

@@ -9,6 +9,8 @@ namespace GitVersionTest.ConApp
         private static void Main(string[] args)
         {
             var interactor = new Interactor();
+// call Add
+
 
             foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
             {
