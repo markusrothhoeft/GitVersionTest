@@ -2,8 +2,6 @@
 using System.Reflection;
 using GitVersionTest.Integration;
 
-//[assembly: AssemblyVersionAttribute("2.0.1")]
-
 namespace GitVersionTest.ConApp
 {
     internal class Program
@@ -11,8 +9,6 @@ namespace GitVersionTest.ConApp
         private static void Main(string[] args)
         {
             var interactor = new Interactor();
-            //ShowAsseblyInfos(typeof(Program).Assembly);
-            //Console.WriteLine("");
 
             foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
             {
@@ -23,7 +19,6 @@ namespace GitVersionTest.ConApp
                 Console.WriteLine("");
 //                ShowGitVersionInformations(assembly);
             }
-
             Console.WriteLine("Press any key to continue... ");
             Console.ReadLine();
         }
@@ -37,16 +32,15 @@ namespace GitVersionTest.ConApp
             Console.WriteLine("Assembly version        : {0}", ver);
 
             // Iterate through the attributes for the assembly.
-            foreach (
-                var attr in Attribute.GetCustomAttributes(assy))
+            foreach (var attr in Attribute.GetCustomAttributes(assy))
             {
                 var type = attr.GetType();
 
                 // Check for the AssemblyTitle attribute.
                 if (type == typeof(AssemblyTitleAttribute))
-                    Console.WriteLine("Title is                : \"{0}\"", ((AssemblyTitleAttribute) attr).Title);
+                    Console.WriteLine("Title is                : {0}", ((AssemblyTitleAttribute) attr).Title);
                 else if (type == typeof(AssemblyDescriptionAttribute))
-                    Console.WriteLine("Description is          : \"{0}\"",
+                    Console.WriteLine("Description is          : {0}",
                         ((AssemblyDescriptionAttribute) attr).Description);
                 else if (type == typeof(AssemblyCompanyAttribute))
                     Console.WriteLine("Company is              : {0}", ((AssemblyCompanyAttribute) attr).Company);
