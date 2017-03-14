@@ -1,4 +1,4 @@
-next-version: 4.0.0-rc1
+next-version: 4.0.0-alpha
 
 assembly-versioning-scheme: MajorMinorPatchTag
 mode: ContinuousDeployment
