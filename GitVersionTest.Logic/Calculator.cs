@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace GitVersionTest.Logic
 {
-    public class AssemblyInfoHandler
+    public class Calculator
     {
-        public string GetAssemblyVersion()
+        public int Add(int x, int y)
         {
-            return "1.1.1";
+            return x + y;
         }
     }
 }

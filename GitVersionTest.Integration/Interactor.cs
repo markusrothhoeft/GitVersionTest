@@ -9,10 +9,9 @@ namespace GitVersionTest.Integration
 {
     public class Interactor
     {
-        public string GetAssemblyInfo()
+        public Interactor()
         {
-            var logic = new AssemblyInfoHandler();
-            return logic.GetAssemblyVersion();
+            var AssInfoHandler = new GitVersionTest.Logic.Calculator();
         }
     }
 }

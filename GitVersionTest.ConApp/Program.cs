@@ -1,35 +1,44 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using GitVersionTest.Integration;
-using System.Reflection;
-using System.Threading;
 
 //[assembly: AssemblyVersionAttribute("2.0.1")]
 
 namespace GitVersionTest.ConApp
 {
-
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-
             var interactor = new Interactor();
+            //ShowAsseblyInfos(typeof(Program).Assembly);
+            //Console.WriteLine("");
 
-            Assembly assy = typeof(Program).Assembly;
+            foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+            {
+                if (assembly.ToString().StartsWith("GitVersion") == false)
+                    continue;
 
-            AssemblyName thisAssemName = assy.GetName();
-            Version ver = thisAssemName.Version;
+                ShowAsseblyInfos(assembly);
+                Console.WriteLine("");
+//                ShowGitVersionInformations(assembly);
+            }
 
-            Console.WriteLine("This is version {0} of {1}.\n", ver, thisAssemName.Name);
+            Console.WriteLine("Press any key to continue... ");
+            Console.ReadLine();
+        }
+
+        public static void ShowAsseblyInfos(Assembly assy)
+        {
+            var thisAssemName = assy.GetName();
+            var ver = thisAssemName.Version;
+
+            Console.WriteLine("Assembly name           : {0}", thisAssemName.Name);
+            Console.WriteLine("Assembly version        : {0}", ver);
 
             // Iterate through the attributes for the assembly.
-            foreach (Attribute attr in Attribute.GetCustomAttributes(assy))
+            foreach (
+                var attr in Attribute.GetCustomAttributes(assy))
             {
                 var type = attr.GetType();
 
@@ -47,8 +56,10 @@ namespace GitVersionTest.ConApp
                     Console.WriteLine("Informational version is: {0}",
                         ((AssemblyInformationalVersionAttribute) attr).InformationalVersion);
             }
+        }
 
-            Console.WriteLine("");
+        public static void ShowGitVersionInformations(Assembly assy)
+        {
             Console.WriteLine("*** GitVersionInformations ***");
             try
             {
@@ -56,20 +67,12 @@ namespace GitVersionTest.ConApp
                 var gitVersionInformationType = assy.GetType(assemblyName + ".GitVersionInformation");
                 var fields = gitVersionInformationType.GetFields();
                 foreach (var field in fields)
-                {
-                    Console.WriteLine(string.Format("{0}: {1}", field.Name, field.GetValue(null)));
-                }
-
+                    Console.WriteLine("{0}: {1}", field.Name, field.GetValue(null));
             }
             catch (Exception)
             {
                 Console.WriteLine("FEHLER: GitVersionInformations können nicht gelesen werden.");
             }
-
-            Console.WriteLine("Press any key to continue... ");
-            Console.ReadLine();
         }
     }
 }
-
-
