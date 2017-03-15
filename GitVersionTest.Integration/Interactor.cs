@@ -19,5 +19,10 @@ namespace GitVersionTest.Integration
         {
             return calc.Add(x, y);
         }
+
+        public int mul(int x, int y)
+        {
+            return calc.Mul(x, y);
+        }
     }
 }
