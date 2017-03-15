@@ -2,6 +2,8 @@
 using System.Reflection;
 using GitVersionTest.Integration;
 
+// version 6.0.0 -beta
+
 namespace GitVersionTest.ConApp
 {
     internal class Program
