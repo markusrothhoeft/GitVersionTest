@@ -2,7 +2,7 @@
 using System.Reflection;
 using GitVersionTest.Integration;
 
-//[assembly: AssemblyVersionAttribute("2.0.1")]
+// Neu in 5.0.0: 
 
 namespace GitVersionTest.ConApp
 {
