@@ -11,6 +11,7 @@ namespace GitVersionTest.ConApp
             var interactor = new Interactor();
 // call Add
 
+// call Mul
 
             foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
             {
