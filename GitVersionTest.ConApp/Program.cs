@@ -3,6 +3,7 @@ using System.Reflection;
 using GitVersionTest.Integration;
 
 // Neu in 5.0.0: 
+// Verbesserung in 5.0.0
 
 namespace GitVersionTest.ConApp
 {
