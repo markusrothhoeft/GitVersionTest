@@ -19,7 +19,7 @@ namespace GitVersionTest.ConApp
 
                 ShowAsseblyInfos(assembly);
                 Console.WriteLine("");
-//                ShowGitVersionInformations(assembly);
+                ShowGitVersionInformations(assembly);
             }
             Console.WriteLine("Press any key to continue... ");
             Console.ReadLine();
